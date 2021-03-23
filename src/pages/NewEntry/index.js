@@ -16,7 +16,7 @@ const NewEntry = ({navigation}) => {
 
   const save = () => {
     const data = {
-      amount: amount,
+      amount: parseFloat(amount),
     };
     console.log('NewEntry :: save', data);
     saveEntry(data, entry);
