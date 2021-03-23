@@ -7,8 +7,25 @@ export const getEntries = async () => {
   const realm = await getRealm();
   const entries = realm.objects('Entry');
   return entries;
+};
 
-  console.log('getEntries :: entries', JSON.stringify(entries));
+export const deleteEntry = async entry => {
+  const realm = await getRealm();
+
+  try {
+    realm.write(() => {
+      realm.delete(entry);
+    });
+  } catch (error) {
+    console.error(
+      'saveEntry :: error on delete object:',
+      JSON.stringify(entry),
+    );
+    Alert.alert(
+      'Erro ao deletar os dados de lançamento',
+      JSON.stringify(entry),
+    );
+  }
 };
 
 export const saveEntry = async (value, entry = {}) => {

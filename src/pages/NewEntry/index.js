@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {View, TextInput, Button, StyleSheet} from 'react-native';
+
 import {saveEntry} from '../../services/Entries';
+import {deleteEntry} from '../../services/Entries';
 
 import BalanceLabel from '../../components/BalanceLabel';
+
+
 
 const NewEntry = ({navigation}) => {
   const currentBalance = 2065.35;
@@ -11,7 +15,7 @@ const NewEntry = ({navigation}) => {
     amount: 0,
     entryAt: new Date(),
   });
-
+ 
   const [amount, setAmount] = useState(`${entry.amount}`);
 
   const save = () => {
@@ -20,7 +24,18 @@ const NewEntry = ({navigation}) => {
     };
     console.log('NewEntry :: save', data);
     saveEntry(data, entry);
+    goBack();
   };
+
+  const remove = () => {
+    deleteEntry(entry);
+    goBack();
+  };
+
+  const goBack = () => {
+    navigation.goBack();
+  };
+
 
   return (
     <View style={styles.container}>
@@ -39,7 +54,8 @@ const NewEntry = ({navigation}) => {
 
       <View>
         <Button title="Adicionar" onPress={save} />
-        <Button title="Cancelar" onPress={() => navigation.goBack()} />
+        <Button title="Excluir" onPress={remove} />
+        <Button title="Cancelar" onPress={goBack} />
       </View>
     </View>
   );
