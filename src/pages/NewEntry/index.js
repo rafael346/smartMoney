@@ -3,7 +3,7 @@ import {View, TextInput, Button, StyleSheet} from 'react-native';
 import {saveEntry} from '../../services/Entries';
 
 import BalanceLabel from '../../components/BalanceLabel';
-// Tela  para inserção de dados
+
 const NewEntry = ({navigation}) => {
   const currentBalance = 2065.35;
   const entry = navigation.getParam('entry', {
