@@ -6,8 +6,6 @@ import {deleteEntry} from '../../services/Entries';
 
 import BalanceLabel from '../../components/BalanceLabel';
 
-
-
 const NewEntry = ({navigation}) => {
   const currentBalance = 2065.35;
   const entry = navigation.getParam('entry', {
@@ -15,10 +13,18 @@ const NewEntry = ({navigation}) => {
     amount: 0,
     entryAt: new Date(),
   });
- 
+
   const [amount, setAmount] = useState(`${entry.amount}`);
 
+  const isValid = () => {
+    if (parseFloat(amount) !== 0 ) {
+      return true;
+    }
+    return false;
+  };
+
   const save = () => {
+    //onSave
     const data = {
       amount: parseFloat(amount),
     };
@@ -28,6 +34,7 @@ const NewEntry = ({navigation}) => {
   };
 
   const remove = () => {
+    //onDelete
     deleteEntry(entry);
     goBack();
   };
@@ -35,7 +42,6 @@ const NewEntry = ({navigation}) => {
   const goBack = () => {
     navigation.goBack();
   };
-
 
   return (
     <View style={styles.container}>
@@ -53,7 +59,12 @@ const NewEntry = ({navigation}) => {
       </View>
 
       <View>
-        <Button title="Adicionar" onPress={save} />
+        <Button
+          title="Adicionar"
+          onPress={() => {
+            isValid() && save();
+          }}
+        />
         <Button title="Excluir" onPress={remove} />
         <Button title="Cancelar" onPress={goBack} />
       </View>
