@@ -13,13 +13,13 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   const bulletLineY = isFirstItem ? 25 : 0;
   const bulletLineHeight = isLastItem ? 25 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
-  const bulletColor = Colors.white;
+  const bulletColor = entry.category.color || Colors.white;
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       onPress={() => {
         onEntryPress && onEntryPress(entry);
-    }}>
+      }}>
       <View style={styles.container}>
         <View style={styles.bullet}>
           <Svg height="50" width="30">
