@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
-import {saveEntry} from '../../services/Entries';
-import {deleteEntry} from '../../services/Entries';
-
 import ActionFooter, {
   ActionPrimaryButton,
   ActionSecondaryButton,
 } from '../../components/Core/ActionFooter';
+
 import NewEntryCategoryPicker from './NewEntryCategoryPicker';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
+
+import useEntries from '../../hooks/useEntries';
 
 import Colors from '../../styles/Colors';
 
@@ -23,6 +23,8 @@ const NewEntry = ({navigation}) => {
     entryAt: new Date(),
     category: {id: null, name: 'Selecione'},
   });
+
+  const [, saveEntry, deleteEntry] = useEntries();
 
   const [amount, setAmount] = useState(entry.amount);
   const [debit, setDebit] = useState(entry.amount <= 0);
