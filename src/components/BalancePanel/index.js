@@ -29,8 +29,7 @@ const BalancePanel = ({onNewEntryPress}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
-
+    marginBottom: -12,
 
   },
   button: {
