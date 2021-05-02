@@ -7,7 +7,7 @@ import Colors from '../../../styles/Colors';
 
 const NewEntryAddressPicker = ({address, onChange}) => {
   const getLocation = (latitude, longitude) => {
-    Geocoder.init('AIzaSyBEJ2v5D2QYy02L2zhTfUaqxdRBH2wYSYw');
+    Geocoder.init('Coloque sua Google Key API Aqui');
     Geocoder.from({latitude, longitude})
       .then(json => {
         const formattedAddress = json.results[0].formatted_address;
