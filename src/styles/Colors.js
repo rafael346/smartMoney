@@ -23,7 +23,6 @@ const Colors = {
   asphaltDark: '#2c3e50',
   carbon: '#555459',
   carbonDark: '#3b3a3e',
-
   primary: '#3498db',
   secondary: '#2ecc71',
   danger: '#f37272',

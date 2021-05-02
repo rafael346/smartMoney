@@ -8,6 +8,7 @@ import ActionFooter, {
 
 import NewEntryCategoryPicker from './NewEntryCategoryPicker';
 import NewEntryDatePicker from './NewEntryDatePicker';
+import NewEntryAddressPicker from './NewEntryAddressPicker';
 import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
@@ -21,6 +22,9 @@ const NewEntry = ({navigation}) => {
     id: null,
     amount: 0,
     entryAt: new Date(),
+    address: null,
+    latitude: null,
+    longitude: null,
     category: {id: null, name: 'Selecione'},
   });
 
@@ -30,6 +34,9 @@ const NewEntry = ({navigation}) => {
   const [debit, setDebit] = useState(entry.amount <= 0);
   const [category, setCategory] = useState(entry.category);
   const [entryAt, setEntryAt] = useState(entry.entryAt);
+  const [address, setAddress] = useState(entry.address);
+  const [latitude, setLatitude] = useState(entry.latitude);
+  const [longitude, setLongitude] = useState(entry.longitude);
 
   const isValid = () => {
     if (parseFloat(amount) !== 0) {
@@ -42,6 +49,9 @@ const NewEntry = ({navigation}) => {
     //onSave
     const data = {
       amount: parseFloat(amount),
+      address: address,
+      latitude: latitude,
+      longitude: longitude,
       category: category,
       entryAt: entryAt,
     };
@@ -77,6 +87,14 @@ const NewEntry = ({navigation}) => {
         />
         <View style={styles.formActionContainer}>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+          <NewEntryAddressPicker
+            address={address}
+            onChange={({latitude, longitude}) => {
+              setLatitude(latitude);
+              setLongitude(longitude);
+              setAddress(address);
+            }}
+          />
           <NewEntryDeleteAction entry={entry} onOkPress={remove} />
         </View>
       </View>

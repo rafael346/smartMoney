@@ -4,11 +4,9 @@ import {getRealm} from './Realm';
 import {getUUID} from '../services/UUID';
 import moment from '../vendors/moment';
 
-
-
 export const getEntries = async (days, category) => {
   let realm = await getRealm();
-  
+
   realm = realm.objects('Entry');
 
   if (days > 0) {
@@ -18,7 +16,7 @@ export const getEntries = async (days, category) => {
     realm = realm.filtered('entryAt >= $0', date);
   }
 
-  if (category && category.id){
+  if (category && category.id) {
     console.log('getEntries:: category', JSON.stringify(category));
     realm = realm.filtered('category == $0', category);
   }
@@ -57,6 +55,9 @@ export const saveEntry = async (value, entry = {}) => {
         amount: value.amount || entry.amount,
         entryAt: value.entryAt || entry.entryAt,
         description: value.category.name,
+        address: value.address || entry.address,
+        latitude: value.latitude || entry.latitudeaddress,
+        longitude: value.longitude || entry.longitude,
         isInit: false,
         category: value.category || entry.category,
       };
