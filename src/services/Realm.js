@@ -4,6 +4,7 @@ import CategorySchema from '../schemas/CategorySchema';
 import EntrySchema from '../schemas/EntrySchema';
 
 import {getDefaultCategories} from './Categories';
+import {cleanInitialized} from './Welcome';
 
 export const getRealm = async () => {
   const realm = await Realm.open({
@@ -12,6 +13,7 @@ export const getRealm = async () => {
   });
 
   // dropDB(realm);
+  //cleanInitialized();
   initDB(realm);
 
   return realm;

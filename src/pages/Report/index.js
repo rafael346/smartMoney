@@ -5,6 +5,7 @@ import {
   Text,
   ScrollView,
   StyleSheet,
+  StatusBar,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -53,6 +54,7 @@ const Report = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
       <BalanceLabel />
 
       <View style={styles.filtersContainer}>
@@ -97,10 +99,8 @@ const Report = ({navigation}) => {
         />
       </View>
 
-      <ScrollView>
-        <EntrySummary days={relativeDays} />
-        <EntryList days={relativeDays} category={category} />
-      </ScrollView>
+      <EntrySummary days={relativeDays} />
+      <EntryList days={relativeDays} category={category} />
 
       <ActionFooter>
         <ActionPrimaryButton
