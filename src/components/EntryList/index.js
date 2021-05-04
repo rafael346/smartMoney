@@ -2,19 +2,17 @@ import React from 'react';
 import {FlatList} from 'react-native';
 
 import Container from '../Core/Container';
+
 import EntryListItem from './EntryListItem';
 
-
 import useEntries from '../../hooks/useEntries';
-
-
 
 const EntryList = ({days = 7, category, onEntryPress, onPressActionButton}) => {
   const [entries] = useEntries(days, category);
 
   return (
     <Container
-      title="Ultimos Lançamentos"
+      title="Últimos lançamentos"
       actionLabelText={`Últimos ${days} dias`}
       actionButtonText="Ver mais"
       onPressActionButton={onPressActionButton}>
@@ -33,4 +31,5 @@ const EntryList = ({days = 7, category, onEntryPress, onPressActionButton}) => {
     </Container>
   );
 };
+
 export default EntryList;

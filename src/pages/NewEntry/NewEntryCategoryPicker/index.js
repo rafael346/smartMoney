@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 import CategoryModal from '../../../components/CategoryModal';
+
 import Colors from '../../../styles/Colors';
 
 const NewEntryCategoryPicker = ({debit, category, onChangeCategory}) => {
@@ -11,6 +12,7 @@ const NewEntryCategoryPicker = ({debit, category, onChangeCategory}) => {
     onChangeCategory(item);
     onClosePress();
   };
+
   const onClosePress = () => {
     setModalVisible(false);
   };
@@ -45,11 +47,6 @@ const styles = StyleSheet.create({
   pickerButtonText: {
     fontSize: 28,
     color: Colors.white,
-    textAlign: 'center',
-  },
-  closeButtonText: {
-    fontSize: 14,
-    color: Colors.green,
     textAlign: 'center',
   },
 });

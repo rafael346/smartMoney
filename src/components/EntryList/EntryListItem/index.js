@@ -6,9 +6,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Colors from '../../../styles/Colors';
 
-//y = distancia do teto 0 = topo/ 50 =base
-// height = distancia da base - 0 = base / 50 = topo
-
 const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   const bulletLineY = isFirstItem ? 25 : 0;
   const bulletLineHeight = isLastItem ? 25 : 50;
@@ -36,18 +33,21 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
             <Circle
               cx="10"
               cy="25"
-              r={8}
+              r="8"
               stroke={Colors.background}
               strokeWidth="1.5"
               fill={bulletColor}
             />
           </Svg>
         </View>
+
         <View style={styles.description}>
           <Text style={styles.descriptionText}>{entry.description}</Text>
+
           <View style={styles.details}>
             <Icon style={styles.entryAtIcon} name="access-time" size={12} />
             <Text style={styles.entryAtText}>{entry.entryAt.toString()}</Text>
+
             {entry.address && (
               <>
                 <Icon style={styles.addressIcon} name="person-pin" size={12} />
@@ -56,6 +56,7 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
             )}
           </View>
         </View>
+
         <View style={styles.amount}>
           <Text style={styles.amountText}>{entry.amount}</Text>
         </View>
@@ -71,16 +72,8 @@ const styles = StyleSheet.create({
   },
   bullet: {},
   description: {
-    justifyContent: 'center',
     flex: 1,
-  },
-  amount: {
     justifyContent: 'center',
-  },
-  amountText: {
-    fontSize: 14,
-    color: Colors.white,
-    fontWeight: 'bold',
   },
   descriptionText: {
     fontSize: 14,
@@ -101,11 +94,20 @@ const styles = StyleSheet.create({
   addressIcon: {
     color: Colors.metal,
     marginTop: 2,
+    marginRight: 2,
     marginLeft: 5,
   },
   addressText: {
     fontSize: 12,
     color: Colors.metal,
+  },
+  amount: {
+    justifyContent: 'center',
+  },
+  amountText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: Colors.white,
   },
 });
 

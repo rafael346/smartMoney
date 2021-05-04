@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -25,6 +25,7 @@ const NewEntryDatePicker = ({value, onChange}) => {
         onPress={() => setModalVisible(true)}>
         <Icon name="today" size={30} color={Colors.white} />
       </TouchableOpacity>
+
       <DateTimePicker
         mode="date"
         datePickerModeAndroid="calendar"

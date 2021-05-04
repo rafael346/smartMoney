@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 import Colors from '../../../styles/Colors';
 
@@ -18,6 +18,7 @@ export const ActionPrimaryButton = ({title, onPress}) => {
     </TouchableOpacity>
   );
 };
+
 export const ActionSecondaryButton = ({title, onPress}) => {
   return (
     <TouchableOpacity style={styles.secondaryButton} onPress={onPress}>

@@ -4,31 +4,34 @@ import {
   getDebitCategories,
   getCreditCategories,
   getAllCategories,
-  getInitCategory,
+  getInitCategories,
 } from '../services/Categories';
 
 const useCategories = () => {
   const [debitCategories, setDebitCategories] = useState();
   const [creditCategories, setCreditCategories] = useState();
   const [allCategories, setAllCategories] = useState();
-  const [initCategory, setInitCategory] = useState();
+  const [initCategories, setInitCategories] = useState();
 
   useEffect(() => {
     const loadDebitCategories = async () => {
       const data = await getDebitCategories();
       setDebitCategories(data);
     };
+
     const loadCreditCategories = async () => {
       const data = await getCreditCategories();
       setCreditCategories(data);
     };
+
     const loadAllCategories = async () => {
       const data = await getAllCategories();
       setAllCategories(data);
     };
+
     const loadInitCategory = async () => {
-      const data = await getInitCategory();
-      setInitCategory(data);
+      const data = await getInitCategories();
+      setInitCategories(data);
     };
 
     loadDebitCategories();
@@ -36,8 +39,8 @@ const useCategories = () => {
     loadAllCategories();
     loadInitCategory();
   }, []);
-  return [debitCategories, creditCategories, allCategories, initCategory];
+
+  return [debitCategories, creditCategories, allCategories, initCategories];
 };
 
 export default useCategories;
-

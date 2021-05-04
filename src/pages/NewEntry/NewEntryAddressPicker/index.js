@@ -1,13 +1,16 @@
 import React from 'react';
 import {Alert, View, TouchableOpacity, StyleSheet} from 'react-native';
+
 import Geolocation from '@react-native-community/geolocation';
 import Geocoder from 'react-native-geocoding';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import Colors from '../../../styles/Colors';
 
 const NewEntryAddressPicker = ({address, onChange}) => {
   const getLocation = (latitude, longitude) => {
-    Geocoder.init('Coloque sua Google Key API Aqui');
+    Geocoder.init('AIzaSyCQ-fnvtHoy_pEcHyJbkBSyFiODMm-8JKI');
+
     Geocoder.from({latitude, longitude})
       .then(json => {
         const formattedAddress = json.results[0].formatted_address;
@@ -32,8 +35,11 @@ const NewEntryAddressPicker = ({address, onChange}) => {
       })
       .catch(error => {
         console.error(
-          'NewEntryAddressPickerr :: getLocation:: erro ao recuperar a localização',
+          'NewEntryAddressPicker :: getLocation :: erro ao recuperar a localização',
           error,
+        );
+        Alert.alert(
+          'Houve um erro ao recuperar sua posição, por favor, tenha certeza que autorizou este aplicativo',
         );
       });
   };
@@ -48,11 +54,11 @@ const NewEntryAddressPicker = ({address, onChange}) => {
       },
       error => {
         console.error(
-          'NewEntryAddressPickerr :: getPosition:: erro ao recuperar a posição',
+          'NewEntryAddressPicker :: getPosition :: erro ao recuperar a posição',
           error,
         );
         Alert.alert(
-          'Houve um erro ao recuperar sua posição, por favor tenha certeza que autorizou este aplicativo',
+          'Houve um erro ao recuperar sua posição, por favor, tenha certeza que autorizou este aplicativo',
         );
       },
     );
@@ -66,9 +72,11 @@ const NewEntryAddressPicker = ({address, onChange}) => {
           onPress: () => {
             onChange({latitude: null, longitude: null, address: null});
           },
+        },
+        {
+          text: 'Cancelar',
           style: 'cancel',
         },
-        {text: 'Ok', onPress: () => console.log('OK Pressed')},
       ]);
     } else {
       getPosition();

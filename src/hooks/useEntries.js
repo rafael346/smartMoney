@@ -10,6 +10,7 @@ const useEntries = (days = 7, category) => {
       const data = await getEntries(days, category);
       setEntries(data);
     }
+
     loadEntries();
   }, [days, category]);
 

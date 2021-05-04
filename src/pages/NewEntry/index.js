@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import ActionFooter, {
   ActionPrimaryButton,
   ActionSecondaryButton,
 } from '../../components/Core/ActionFooter';
 
-import NewEntryCategoryPicker from './NewEntryCategoryPicker';
-import NewEntryDatePicker from './NewEntryDatePicker';
-import NewEntryAddressPicker from './NewEntryAddressPicker';
-import NewEntryCameraPicker from './NewEntryCameraPicker';
 import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
+import NewEntryCategoryPicker from './NewEntryCategoryPicker';
+import NewEntryDatePicker from './NewEntryDatePicker';
+import NewEntryCameraPicker from './NewEntryCameraPicker';
+import NewEntryAddressPicker from './NewEntryAddressPicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
 
 import useEntries from '../../hooks/useEntries';
@@ -32,8 +32,8 @@ const NewEntry = ({navigation}) => {
 
   const [, saveEntry, deleteEntry] = useEntries();
 
-  const [amount, setAmount] = useState(entry.amount);
   const [debit, setDebit] = useState(entry.amount <= 0);
+  const [amount, setAmount] = useState(entry.amount);
   const [category, setCategory] = useState(entry.category);
   const [entryAt, setEntryAt] = useState(entry.entryAt);
   const [photo, setPhoto] = useState(entry.photo);
@@ -45,32 +45,32 @@ const NewEntry = ({navigation}) => {
     if (parseFloat(amount) !== 0) {
       return true;
     }
+
     return false;
   };
 
-  const save = () => {
-    //onSave
+  const onSave = () => {
     const data = {
-      amount: parseFloat(amount),
+      amount: amount,
+      category: category,
+      photo: photo,
       address: address,
       latitude: latitude,
       longitude: longitude,
-      category: category,
-      photo: photo,
       entryAt: entryAt,
     };
-    console.log('NewEntry :: save', data);
+
+    console.log('NewEntry :: save ', data);
     saveEntry(data, entry);
-    goBack();
+    onClose();
   };
 
-  const remove = () => {
-    //onDelete
+  const onDelete = () => {
     deleteEntry(entry);
-    goBack();
+    onClose();
   };
 
-  const goBack = () => {
+  const onClose = () => {
     navigation.goBack();
   };
 
@@ -81,26 +81,27 @@ const NewEntry = ({navigation}) => {
       <View style={styles.formContainer}>
         <NewEntryInput
           value={amount}
-          onChangeDebit={setDebit}
           onChangeValue={setAmount}
+          onChangeDebit={setDebit}
         />
         <NewEntryCategoryPicker
           debit={debit}
           category={category}
           onChangeCategory={setCategory}
         />
+
         <View style={styles.formActionContainer}>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
           <NewEntryCameraPicker photo={photo} onChangePhoto={setPhoto} />
           <NewEntryAddressPicker
             address={address}
-            onChange={({latitude, longitude}) => {
+            onChange={({latitude, longitude, address}) => {
               setLatitude(latitude);
               setLongitude(longitude);
               setAddress(address);
             }}
           />
-          <NewEntryDeleteAction entry={entry} onOkPress={remove} />
+          <NewEntryDeleteAction entry={entry} onOkPress={onDelete} />
         </View>
       </View>
 
@@ -108,10 +109,10 @@ const NewEntry = ({navigation}) => {
         <ActionPrimaryButton
           title={entry.id ? 'Salvar' : 'Adicionar'}
           onPress={() => {
-            isValid() && save();
+            isValid() && onSave();
           }}
         />
-        <ActionSecondaryButton title="Cancelar" onPress={goBack} />
+        <ActionSecondaryButton title="Cancelar" onPress={onClose} />
       </ActionFooter>
     </View>
   );

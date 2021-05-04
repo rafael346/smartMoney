@@ -10,11 +10,11 @@ const useBalance = () => {
       const value = await getBalance();
       setBalance(value);
     }
+
     loadBalance();
   }, []);
 
   return [balance];
-
 };
 
 export default useBalance;

@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import Colors from '../../../styles/Colors';
 
 const Container = ({
@@ -12,7 +14,8 @@ const Container = ({
 }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      {title && <Text style={styles.title}>{title}</Text>}
+
       {children}
 
       {(actionLabelText || actionButtonText) && (
@@ -20,7 +23,6 @@ const Container = ({
           {actionLabelText && (
             <Text style={styles.actionLabel}>{actionLabelText}</Text>
           )}
-
           {actionButtonText && (
             <TouchableOpacity
               style={styles.actionButton}
@@ -59,7 +61,6 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   actionButton: {
-    color: Colors.white,
     flexDirection: 'row',
   },
   actionButtonIcon: {

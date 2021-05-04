@@ -9,7 +9,7 @@ const NewEntryDeleteAction = ({entry, onOkPress}) => {
   const onDelete = () => {
     Alert.alert(
       'Apagar?',
-      'Você deseja mesmo apagar este lançamento?',
+      'Você deseja realmente apagar este lançamento?',
       [
         {text: 'Não', style: 'cancel'},
         {text: 'Sim', onPress: () => onOkPress()},

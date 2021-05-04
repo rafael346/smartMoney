@@ -18,34 +18,33 @@ const CategoryModal = ({categoryType, isVisible, onConfirm, onCancel}) => {
   const [debitCategories, creditCategories, allCategories] = useCategories();
 
   return (
-    <View>
-      <Modal animationType="slide" transparent={false} visible={isVisible}>
-        <View style={styles.modal}>
-          <FlatList
-            data={
-              categoryType === 'all'
-                ? allCategories
-                : categoryType === 'debit'
-                ? debitCategories
-                : creditCategories
-            }
-            keyExtractor={item => item.id}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                style={styles.modalItem}
-                onPress={() => onConfirm(item)}>
-                <Text style={[styles.modalItemText, {color: item.color}]}>
-                  {item.name}
-                </Text>
-              </TouchableOpacity>
-            )}
-          />
-          <ActionFooter>
-            <ActionPrimaryButton title="Fechar" onPress={onCancel} />
-          </ActionFooter>
-        </View>
-      </Modal>
-    </View>
+    <Modal animationType="slide" transparent={false} visible={isVisible}>
+      <View style={styles.modal}>
+        <FlatList
+          data={
+            categoryType === 'all'
+              ? allCategories
+              : categoryType === 'debit'
+              ? debitCategories
+              : creditCategories
+          }
+          keyExtractor={item => item.id}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              style={styles.modalItem}
+              onPress={() => onConfirm(item)}>
+              <Text style={[styles.modalItemText, {color: item.color}]}>
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+
+      <ActionFooter>
+        <ActionPrimaryButton title="Fechar" onPress={onCancel} />
+      </ActionFooter>
+    </Modal>
   );
 };
 

@@ -1,8 +1,9 @@
+import _ from 'lodash';
+import moment from '../vendors/moment';
+
 import {getRealm} from './Realm';
 import {getUUID} from './UUID';
 
-import _ from 'lodash';
-import moment from '../vendors/moment';
 import Colors from '../styles/Colors';
 
 export const getBalance = async (untilDays = 0) => {
@@ -11,7 +12,9 @@ export const getBalance = async (untilDays = 0) => {
   let entries = realm.objects('Entry');
 
   if (untilDays > 0) {
-    const date = moment().subtract(untilDays, 'days').toDate();
+    const date = moment()
+      .subtract(untilDays, 'days')
+      .toDate();
 
     entries = entries.filtered('entryAt < $0', date);
   }
@@ -27,7 +30,9 @@ export const getBalanceSumByDate = async days => {
   let entries = realm.objects('Entry');
 
   if (days > 0) {
-    const date = moment().subtract(days, 'days').toDate();
+    const date = moment()
+      .subtract(days, 'days')
+      .toDate();
 
     entries = entries.filtered('entryAt >= $0', date);
   }
@@ -56,7 +61,9 @@ export const getBalanceSumByCategory = async (days, showOthers = true) => {
   let entries = realm.objects('Entry');
 
   if (days > 0) {
-    const date = moment().subtract(days, 'days').toDate();
+    const date = moment()
+      .subtract(days, 'days')
+      .toDate();
 
     entries = entries.filtered('entryAt >= $0', date);
   }
@@ -71,9 +78,9 @@ export const getBalanceSumByCategory = async (days, showOthers = true) => {
     .orderBy('amount', 'desc');
 
   const othersLimit = 3;
-  if (showOthers && _(entries).size > othersLimit) {
-    const data1 = _(entries).slice(0, othersLimit);
 
+  if (showOthers && _(entries).size() > othersLimit) {
+    const data1 = _(entries).slice(0, othersLimit);
     const data2 = [
       {
         category: {id: getUUID(), name: 'Outros', color: Colors.metal},
@@ -83,7 +90,8 @@ export const getBalanceSumByCategory = async (days, showOthers = true) => {
           .sum(),
       },
     ];
-    entries = [...data1,...data2];
+
+    entries = [...data1, ...data2];
   }
 
   console.log('getBalanceSumByCategory :: ', JSON.stringify(entries));

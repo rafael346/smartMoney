@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import Colors from '../../styles/Colors';
+
 import useBalance from '../../hooks/useBalance';
 
-const BalanceLabel = () => {
-  
-  const [balance] = useBalance();
+import Colors from '../../styles/Colors';
 
+const BalanceLabel = () => {
+  const [balance] = useBalance();
 
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Saldo Atual</Text>
+
       <LinearGradient
         style={styles.panel}
         colors={[Colors.violet, Colors.blue]}>
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   label: {
-    fontSize: 14,
+    fontSize: 12,
     color: Colors.white,
   },
   panel: {
@@ -40,8 +41,8 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 28,
-    textAlign: 'center',
     color: Colors.white,
+    textAlign: 'center',
   },
 });
 

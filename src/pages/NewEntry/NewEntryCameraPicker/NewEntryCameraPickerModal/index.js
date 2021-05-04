@@ -60,11 +60,11 @@ const NewEntryCameraPickerModal = ({
             ref={ref => setCamera(ref)}
             style={styles.camera}
             type={RNCamera.Constants.Type.back}
-            autoFocus={RNCamera.Constants.AutoFocus.on}
+            autofocus={RNCamera.Constants.AutoFocus.on}
             flashMode={RNCamera.Constants.FlashMode.on}
             androidCameraPermissionOptions={{
               title: 'Permissão para usar a câmera',
-              message: 'Precisamos da sua permissão para usar a câmera',
+              message: 'Precisamos da sua permissão para usar a câmera.',
               buttonPositive: 'Ok',
               buttonNegative: 'Cancelar',
             }}
@@ -117,6 +117,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
     bottom: 20,
+  },
+  buttonDeletePicture: {
+    flex: 0,
+    position: 'absolute',
+    top: 20,
+    right: 20,
   },
 });
 

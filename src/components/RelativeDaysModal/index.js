@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-  View,
   Modal,
+  View,
   FlatList,
   TouchableOpacity,
   Text,
   StyleSheet,
 } from 'react-native';
-import Colors from '../../styles/Colors';
 
 import ActionFooter, {ActionPrimaryButton} from '../Core/ActionFooter';
+
+import Colors from '../../styles/Colors';
 
 const RelativeDaysModal = ({isVisible, onConfirm, onCancel}) => {
   const relativeDays = [1, 3, 7, 15, 21, 30, 45, 60, 90, 180, 365];
@@ -29,6 +30,7 @@ const RelativeDaysModal = ({isVisible, onConfirm, onCancel}) => {
           )}
         />
       </View>
+
       <ActionFooter>
         <ActionPrimaryButton title="Fechar" onPress={onCancel} />
       </ActionFooter>
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 20,
   },
-  modalItemText:{
+  modalItemText: {
     fontSize: 22,
     color: Colors.white,
     textAlign: 'center',

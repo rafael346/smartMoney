@@ -1,4 +1,3 @@
-/* eslint-disable no-bitwise */
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
@@ -15,7 +14,7 @@ const EntrySummaryChart = ({data}) => {
       outerRadius: '100%',
       innerRadius: '80%',
     },
-  }))
+  }));
 
   return (
     <View style={styles.container}>

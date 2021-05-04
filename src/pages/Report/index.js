@@ -3,8 +3,8 @@ import {
   View,
   TouchableOpacity,
   Text,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -21,7 +21,6 @@ import CategoryModal from '../../components/CategoryModal';
 
 import Colors from '../../styles/Colors';
 
-//Tela de Relatórios
 const Report = ({navigation}) => {
   const [relativeDaysModalVisible, setRelativeDaysModalVisible] = useState(
     false,
@@ -31,7 +30,7 @@ const Report = ({navigation}) => {
   const [relativeDays, setRelativeDays] = useState(7);
   const [category, setCategory] = useState({
     id: null,
-    name: 'Todas as Categorias',
+    name: 'Todas Categorias',
   });
 
   const onRelativeDaysPress = item => {
@@ -55,6 +54,7 @@ const Report = ({navigation}) => {
   return (
     <View style={styles.container}>
       <BalanceLabel />
+
       <View style={styles.filtersContainer}>
         <TouchableOpacity
           style={styles.filterButton}
@@ -76,6 +76,7 @@ const Report = ({navigation}) => {
           onConfirm={onRelativeDaysPress}
           onCancel={onRelativeDaysClosePress}
         />
+
         <TouchableOpacity
           style={styles.filterButton}
           onPress={() => {
@@ -95,10 +96,12 @@ const Report = ({navigation}) => {
           onCancel={onCategoryClosePress}
         />
       </View>
+
       <ScrollView>
         <EntrySummary days={relativeDays} />
         <EntryList days={relativeDays} category={category} />
       </ScrollView>
+
       <ActionFooter>
         <ActionPrimaryButton
           title="Fechar"

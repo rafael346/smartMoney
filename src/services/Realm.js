@@ -10,7 +10,8 @@ export const getRealm = async () => {
     schema: [CategorySchema, EntrySchema],
     schemaVersion: 3,
   });
-  //dropDB(realm);
+
+  // dropDB(realm);
   initDB(realm);
 
   return realm;
@@ -40,6 +41,7 @@ export const initDB = realm => {
     console.log('initDB :: categories already existing... Skypping.');
   }
 };
+
 export const dropDB = realm => {
   console.log('dropDB :: dropping db...');
   realm.write(() => {
