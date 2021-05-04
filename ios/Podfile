@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'smartMoney' do
+target 'SmartMoney' do
   config = use_native_modules!
 
   use_react_native!(
@@ -16,7 +16,7 @@ target 'smartMoney' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'smartMoneyTests' do
+  target 'SmartMoneyTests' do
     inherit! :complete
     # Pods for testing
   end

@@ -4,6 +4,9 @@ import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import Svg, {Circle, Rect} from 'react-native-svg';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Currency from '../../Core/Currency';
+import moment from '../../../vendors/moment';
+
 import Colors from '../../../styles/Colors';
 
 const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
@@ -46,7 +49,9 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
 
           <View style={styles.details}>
             <Icon style={styles.entryAtIcon} name="access-time" size={12} />
-            <Text style={styles.entryAtText}>{entry.entryAt.toString()}</Text>
+            <Text style={styles.entryAtText}>
+              {moment(entry.entryAt).calendar()}
+            </Text>
 
             {entry.address && (
               <>
@@ -58,7 +63,9 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
         </View>
 
         <View style={styles.amount}>
-          <Text style={styles.amountText}>{entry.amount}</Text>
+          <Text style={styles.amountText}>
+            <Currency value={entry.amount} />
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

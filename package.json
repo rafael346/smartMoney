@@ -1,5 +1,5 @@
 {
-  "name": "smartMoney",
+  "name": "SmartMoney",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -30,6 +30,7 @@
     "react-native-uuid": "^1.4.9",
     "react-native-vector-icons": "^8.1.0",
     "react-navigation": "^4.4.4",
+    "react-number-format": "^4.5.5",
     "realm": "^10.2.0",
     "uuid": "^3.3.3"
   },

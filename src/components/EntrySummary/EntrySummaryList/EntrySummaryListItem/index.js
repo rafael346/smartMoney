@@ -3,6 +3,8 @@ import {View, Text, StyleSheet} from 'react-native';
 
 import Svg, {Circle} from 'react-native-svg';
 
+import Currency from '../../../Core/Currency';
+
 import Colors from '../../../../styles/Colors';
 
 const EntrySummaryListItem = ({entry}) => {
@@ -21,7 +23,9 @@ const EntrySummaryListItem = ({entry}) => {
         />
       </Svg>
       <Text style={styles.name}>{entry.category.name}</Text>
-      <Text style={styles.value}>{entry.amount}</Text>
+      <Text style={styles.value}>
+        <Currency value={entry.amount} />
+      </Text>
     </View>
   );
 };
